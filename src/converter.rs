@@ -14,7 +14,7 @@ impl Ieee754 {
         }
     }
 
-    pub fn convert_predecimalplace_to_binary(&mut self, bias: Option<usize>) -> String {
+    pub fn convert_pre_decimalplace_to_binary_string(&mut self, bias: Option<usize>) -> String {
         match bias {
             Some(b) => format!("{:b}", b),
             None => {
@@ -24,7 +24,7 @@ impl Ieee754 {
         }
     }
 
-    pub fn convert_decimalplace_to_binary(&mut self) -> String {
+    pub fn convert_decimalplace_to_binary_string(&mut self) -> String {
         let mut str_bin: String = String::new();
         let mut decplace: f32 = self.input - (self.input as u32) as f32;
         self.decimal_place = decplace;
@@ -73,7 +73,7 @@ impl Ieee754 {
 
     pub fn get_bias(&mut self) -> String {
         let bias: usize = self.exponent + 127;
-        let ret: String = self.convert_predecimalplace_to_binary(Option::Some(bias));
+        let ret: String = self.convert_pre_decimalplace_to_binary_string(Option::Some(bias));
         let mut add_zero: String = String::new();
 
         if ret.len() < 8 {

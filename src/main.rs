@@ -9,24 +9,24 @@ fn main() -> io::Result<()> {
     let mut input = String::new();
     io::stdin().read_line(&mut input)?;
 
-    let f: f32 = input.trim().parse().unwrap();
+    let float_input: f32 = input.trim().parse().unwrap();
 
-    let mut container: Ieee754 = Ieee754::new(f);
+    let mut binary_format: Ieee754 = Ieee754::new(float_input);
 
-    let predecimal: String = container.convert_predecimalplace_to_binary(Option::None);
+    let pre_decimalplace: String = binary_format.convert_pre_decimalplace_to_binary_string(Option::None);
 
-    let decimal: String = container.convert_decimalplace_to_binary();
+    let decimalplace: String = binary_format.convert_decimalplace_to_binary_string();
 
-    let binary_str: String = predecimal + "." + &decimal;
+    let binary_str: String = pre_decimalplace + "." + &decimalplace;
     println!("Binary representation:\t{binary_str}");
 
-    let normalized_str: String = container.normalize(binary_str);
+    let normalized_str: String = binary_format.normalize(binary_str);
     println!("Normalized:\t\t{normalized_str}");
 
-    let bias: String = container.get_bias();
+    let bias: String = binary_format.get_bias();
     println!("Calculated bias:\t{bias}");
 
-    let ieee: String = container.get_ieee754(normalized_str, bias);
+    let ieee: String = binary_format.get_ieee754(normalized_str, bias);
     println!("IEEE754 representation:\t{ieee}");
 
     Ok(())
