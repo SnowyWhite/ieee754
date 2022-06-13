@@ -13,7 +13,8 @@ fn main() -> io::Result<()> {
 
     let mut binary_format: Ieee754 = Ieee754::new(float_input);
 
-    let pre_decimalplace: String = binary_format.convert_pre_decimalplace_to_binary_string(Option::None);
+    let pre_decimalplace: String =
+        binary_format.convert_pre_decimalplace_to_binary_string(Option::None);
 
     let decimalplace: String = binary_format.convert_decimalplace_to_binary_string();
 
